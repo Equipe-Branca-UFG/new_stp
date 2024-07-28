@@ -1,6 +1,7 @@
 package br.ufg.inf.backend.stp.domain.transferencia;
 
 import br.ufg.inf.backend.stp.domain.paciente.Paciente;
+import br.ufg.inf.backend.stp.domain.transferencia.dto.TransferenciaDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

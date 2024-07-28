@@ -1,6 +1,7 @@
 package br.ufg.inf.backend.stp.domain.paciente;
 
 import br.ufg.inf.backend.stp.domain.paciente.dto.CreatePacienteDTO;
+import br.ufg.inf.backend.stp.domain.paciente.dto.PacienteDTO;
 import br.ufg.inf.backend.stp.domain.transferencia.Transferencia;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -47,8 +48,8 @@ public class Paciente {
         this.condicao = createPacienteDTO.getCondicao();
     }
 
-    public CreatePacienteDTO toCreatePacienteDTO() {
-        return new CreatePacienteDTO(
+    public PacienteDTO toPacienteDTO() {
+        return new PacienteDTO(
                 this.id,
                 this.nome,
                 this.cpf,

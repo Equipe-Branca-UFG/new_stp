@@ -32,12 +32,12 @@ public class PacienteService {
 
     public List<PacienteDTO> buscarTodosPacientes() {
         List<Paciente> pacientes = pacienteRepository.findAll();
-        return pacientes.stream().map(Paciente::toDTO).collect(Collectors.toList());
+        return pacientes.stream().map(Paciente::toPacienteDTO).collect(Collectors.toList());
     }
 
     public PacienteDTO buscarPacientePorId(Long id) throws Exception {
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(() -> new Exception("Paciente não encontrado"));
-        return paciente.toDTO();
+        return paciente.toPacienteDTO();
     }
 }
