@@ -2,12 +2,16 @@ package br.ufg.inf.backend.stp.domain.paciente;
 
 import br.ufg.inf.backend.stp.domain.paciente.dto.CreatePacienteDTO;
 import br.ufg.inf.backend.stp.domain.paciente.dto.PacienteDTO;
+import br.ufg.inf.backend.stp.domain.prontuario.Prontuario;
 import br.ufg.inf.backend.stp.domain.transferencia.Transferencia;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "paciente")
 @Table(name = "paciente")
@@ -30,22 +34,17 @@ public class Paciente {
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
-    @NotNull(message = "Prontuário não pode ser nulo.")
-    @Column(name = "prontuario", nullable = false)
-    private String prontuario;
-
-    @NotNull(message = "Condição não pode ser nula.")
-    @Column(name = "condicao", nullable = false)
-    private String condicao;
+    @OneToOne
+    @JsonManagedReference
+    private Prontuario prontuario;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Transferencia> transferencias;
 
     public Paciente(CreatePacienteDTO createPacienteDTO) {
         this.nome = createPacienteDTO.getNome();
         this.cpf = createPacienteDTO.getCpf();
-        this.prontuario = createPacienteDTO.getProntuario();
-        this.condicao = createPacienteDTO.getCondicao();
     }
 
     public PacienteDTO toPacienteDTO() {
@@ -53,8 +52,7 @@ public class Paciente {
                 this.id,
                 this.nome,
                 this.cpf,
-                this.prontuario,
-                this.condicao
+                this.prontuario
         );
     }
 }

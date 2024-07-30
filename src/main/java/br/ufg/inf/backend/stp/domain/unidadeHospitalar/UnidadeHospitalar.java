@@ -30,10 +30,15 @@ public class UnidadeHospitalar {
     @Column(name = "telefone", nullable = false)
     private String telefone;
 
+    @NotNull(message = "Responsável não pode ser nulo.")
+    @Column(name = "responsavel", nullable = false)
+    private String responsavel;
+
     public UnidadeHospitalar(UnidadeHospitalarDTO unidadeHospitalarDTO) {
         this.nome = unidadeHospitalarDTO.getNome();
         this.endereco = unidadeHospitalarDTO.getEndereco();
         this.telefone = unidadeHospitalarDTO.getTelefone();
+        this.responsavel = unidadeHospitalarDTO.getResponsavel();
     }
 
     public UnidadeHospitalarDTO toUnidadeHospitalarDTO() {
@@ -41,7 +46,8 @@ public class UnidadeHospitalar {
                 this.id,
                 this.nome,
                 this.endereco,
-                this.telefone
+                this.telefone,
+                this.responsavel
         );
     }
 }

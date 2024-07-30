@@ -23,4 +23,7 @@ public class UnidadeHospitalarDTO {
     @NotNull (message = "Telefone não pode ser nulo.")
     private String telefone;
 
+    @NotNull (message = "Responsavel não pode ser nulo.")
+    private String responsavel;
+
 }

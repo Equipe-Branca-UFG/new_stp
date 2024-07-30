@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.ufg.inf.backend.stp.domain.paciente.Paciente;
+import br.ufg.inf.backend.stp.domain.unidadeHospitalar.UnidadeHospitalar;
 import br.ufg.inf.backend.stp.enums.Classificacao;
 import br.ufg.inf.backend.stp.enums.MeioTransporte;
 
@@ -15,23 +17,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @Data
-public class TransferenciaDTO {
+public class TransferenciaDTOResponse {
 
     @NotNull
     private Long id;
 
     @NotNull
-    private Long pacienteId;
+    private Paciente paciente;
 
     @NotNull
-    private Long origemId;
+    private UnidadeHospitalar origem;
 
     @NotNull
-    private Long destinoId;
+    private UnidadeHospitalar destino;
 
     @NotNull
     private MeioTransporte meioTransporte;
-
+    
     @NotNull
     private Classificacao classificacao;
 
