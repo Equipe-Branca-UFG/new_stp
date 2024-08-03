@@ -35,6 +35,7 @@ public class Paciente {
     private String cpf;
 
     @OneToOne
+    @JoinColumn(name = "prontuario_id") 
     @JsonManagedReference
     private Prontuario prontuario;
 
